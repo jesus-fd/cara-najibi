@@ -36,67 +36,68 @@ body {
   }
 }
 
-/* Girasoles animados */
+/* Girasoles con pétalos realistas */
 .girasol {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   position: absolute;
-  animation: girar 20s linear infinite;
+  animation: girar 25s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Centro del girasol */
+/* Centro del girasol (semillas) */
 .girasol::before {
   content: "";
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background: radial-gradient(circle, #8B4513 30%, #5D2906 100%);
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(circle, #5D2906 20%, #8B4513 70%);
   border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  box-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.8);
 }
 
-/* Pétalos (12 pétalos) */
-.girasol::after {
-  content: "";
+/* Estilo de cada pétalo */
+.petalo {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: conic-gradient(
-    transparent 0deg 30deg,
-    #FFD700 30deg 60deg,
-    transparent 60deg 90deg,
-    #FFD700 90deg 120deg,
-    transparent 120deg 150deg,
-    #FFD700 150deg 180deg,
-    transparent 180deg 210deg,
-    #FFD700 210deg 240deg,
-    transparent 240deg 270deg,
-    #FFD700 270deg 300deg,
-    transparent 300deg 330deg,
-    #FFD700 330deg 360deg
-  );
-  border-radius: 50%;
-  transform: rotate(0deg);
+  width: 25px;
+  height: 60px;
+  background: linear-gradient(to bottom, #FFD700 20%, #FFA500 100%);
+  border-radius: 50% 50% 0 0;
+  transform-origin: bottom center;
+  z-index: 1;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
+
+/* Posicionamiento de los 12 pétalos (30° de separación) */
+.girasol .petalo:nth-child(1) { transform: rotate(0deg) translateY(-35px); }
+.girasol .petalo:nth-child(2) { transform: rotate(30deg) translateY(-35px); }
+.girasol .petalo:nth-child(3) { transform: rotate(60deg) translateY(-35px); }
+.girasol .petalo:nth-child(4) { transform: rotate(90deg) translateY(-35px); }
+.girasol .petalo:nth-child(5) { transform: rotate(120deg) translateY(-35px); }
+.girasol .petalo:nth-child(6) { transform: rotate(150deg) translateY(-35px); }
+.girasol .petalo:nth-child(7) { transform: rotate(180deg) translateY(-35px); }
+.girasol .petalo:nth-child(8) { transform: rotate(210deg) translateY(-35px); }
+.girasol .petalo:nth-child(9) { transform: rotate(240deg) translateY(-35px); }
+.girasol .petalo:nth-child(10) { transform: rotate(270deg) translateY(-35px); }
+.girasol .petalo:nth-child(11) { transform: rotate(300deg) translateY(-35px); }
+.girasol .petalo:nth-child(12) { transform: rotate(330deg) translateY(-35px); }
 
 /* Posiciones de los 12 girasoles */
 .g1 { top: 5%; left: 5%; }
 .g2 { top: 5%; left: 50%; transform: translateX(-50%); }
 .g3 { top: 5%; right: 5%; }
-.g4 { top: 50%; right: 5%; transform: translateY(-50%); }
-.g5 { bottom: 5%; right: 5%; }
-.g6 { bottom: 5%; left: 50%; transform: translateX(-50%); }
-.g7 { bottom: 5%; left: 5%; }
-.g8 { top: 50%; left: 5%; transform: translateY(-50%); }
-/* Girasoles adicionales en posiciones intermedias */
-.g9 { top: 25%; left: 25%; }
-.g10 { top: 25%; right: 25%; }
-.g11 { bottom: 25%; right: 25%; }
-.g12 { bottom: 25%; left: 25%; }
+.g4 { top: 20%; right: 5%; }
+.g5 { top: 35%; right: 5%; }
+.g6 { bottom: 35%; right: 5%; }
+.g7 { bottom: 5%; right: 5%; }
+.g8 { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.g9 { bottom: 5%; left: 5%; }
+.g10 { bottom: 20%; left: 5%; }
+.g11 { bottom: 35%; left: 5%; }
+.g12 { top: 35%; left: 5%; }
 
 /* Animación de giro */
 @keyframes girar {

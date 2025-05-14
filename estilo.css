@@ -1,4 +1,4 @@
-/* Reset básico */
+/* Reset para evitar conflictos */
 * {
   margin: 0;
   padding: 0;
@@ -16,49 +16,33 @@ body {
   overflow: hidden;
 }
 
-/* Estilos de la carta */
+/* Carta (con animación FORZADA para debug) */
 .carta {
   padding: 2rem;
-  background-color: white;
+  background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  animation: aparecer 1s ease-out forwards;
-  text-align: center;
-  z-index: 10; /* Asegura que esté sobre las flores */
-  max-width: 80%; /* Para responsive */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: aparecer 1s ease-out;
+  opacity: 0; /* Inicialmente invisible */
+  animation-fill-mode: forwards; /* Mantiene el estado final */
 }
 
 @keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
 
-/* Estilos de las flores */
+/* Flores (con estilos VISIBLES para debug) */
 .flor {
   width: 60px;
   height: 60px;
-  position: absolute;
-  background: radial-gradient(circle, #ffeb3b 40%, #ff9800 100%);
+  background: radial-gradient(circle, yellow 40%, orange 100%);
   border-radius: 50%;
-  animation: girar 10s linear infinite;
-  z-index: 1;
-}
-
-/* Pétalos simulados con pseudoelementos */
-.flor::before {
-  content: "";
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, transparent 40%, rgba(255, 192, 203, 0.7) 100%);
-  border-radius: 50%;
-  transform: rotate(45deg);
+  animation: girar 5s linear infinite;
+  border: 2px solid red; /* Borde rojo para DEBUG */
 }
 
 /* Posiciones de las flores */
@@ -67,7 +51,6 @@ body {
 .flor3 { bottom: 10%; left: 10%; }
 .flor4 { bottom: 10%; right: 10%; }
 
-/* Animación de giro */
 @keyframes girar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

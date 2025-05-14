@@ -25,20 +25,20 @@ body {
   text-align: center;
   max-width: 85%;
   z-index: 10;
+  position: relative;
 }
 
-/* Girasol corregido */
+/* Girasoles */
 .girasol {
   width: 120px;
   height: 120px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: fixed;
   animation: girar 20s linear infinite;
+  display: grid;
+  place-items: center;
 }
 
-/* CENTRO MARÓN PERFECTO */
+/* Centro del girasol - Versión perfecta */
 .girasol::before {
   content: "";
   position: absolute;
@@ -46,11 +46,11 @@ body {
   height: 40px;
   background: radial-gradient(circle, #5D2906 40%, #8B4513 90%);
   border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 12px rgba(139, 69, 19, 0.9);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
-  box-shadow: 0 0 12px rgba(139, 69, 19, 0.9);
 }
 
 /* Pétalos perfectamente alineados */
@@ -65,9 +65,10 @@ body {
   margin-left: -15px;
   margin-top: -35px;
   transform-origin: 50% 100%;
+  z-index: 1;
 }
 
-/* Posicionamiento de los pétalos */
+/* Posicionamiento de 12 pétalos */
 .petalo:nth-child(1) { transform: rotate(0deg) translateY(-25px); }
 .petalo:nth-child(2) { transform: rotate(30deg) translateY(-25px); }
 .petalo:nth-child(3) { transform: rotate(60deg) translateY(-25px); }
@@ -81,8 +82,22 @@ body {
 .petalo:nth-child(11) { transform: rotate(300deg) translateY(-25px); }
 .petalo:nth-child(12) { transform: rotate(330deg) translateY(-25px); }
 
+/* Distribución de 12 girasoles alrededor de la pantalla */
+.g1 { top: 10%; left: 10%; }
+.g2 { top: 10%; left: 30%; }
+.g3 { top: 10%; left: 50%; transform: translateX(-50%); }
+.g4 { top: 10%; left: 70%; }
+.g5 { top: 10%; left: 90%; }
+.g6 { top: 30%; left: 90%; }
+.g7 { top: 50%; left: 90%; transform: translateY(-50%); }
+.g8 { top: 70%; left: 90%; }
+.g9 { top: 90%; left: 90%; }
+.g10 { top: 90%; left: 70%; }
+.g11 { top: 90%; left: 50%; transform: translateX(-50%); }
+.g12 { top: 90%; left: 30%; }
+
 /* Animación */
 @keyframes girar {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

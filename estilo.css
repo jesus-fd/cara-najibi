@@ -8,7 +8,7 @@
 body {
   font-family: 'Arial', sans-serif;
   height: 100vh;
-  background-color: #fff5f7;
+  background-color: #fffaf0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,73 +36,75 @@ body {
   }
 }
 
-/* Flores con 8 pétalos - VERSIÓN CORREGIDA */
-.flor {
-  width: 100px;
-  height: 100px;
+/* Girasoles animados */
+.girasol {
+  width: 80px;
+  height: 80px;
   position: absolute;
-  animation: girar 15s linear infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  animation: girar 20s linear infinite;
 }
 
-/* Centro de la flor - CORRECCIÓN */
-.flor::before {
+/* Centro del girasol */
+.girasol::before {
   content: "";
   position: absolute;
-  width: 24px;
-  height: 24px;
-  background: radial-gradient(circle, #FFD700 30%, #FFA500 100%);
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #8B4513 30%, #5D2906 100%);
   border-radius: 50%;
-  z-index: 10;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
 }
 
-/* Pétalos - VERSIÓN CORREGIDA */
-.flor span {
+/* Pétalos (12 pétalos) */
+.girasol::after {
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
+  background: conic-gradient(
+    transparent 0deg 30deg,
+    #FFD700 30deg 60deg,
+    transparent 60deg 90deg,
+    #FFD700 90deg 120deg,
+    transparent 120deg 150deg,
+    #FFD700 150deg 180deg,
+    transparent 180deg 210deg,
+    #FFD700 210deg 240deg,
+    transparent 240deg 270deg,
+    #FFD700 270deg 300deg,
+    transparent 300deg 330deg,
+    #FFD700 330deg 360deg
+  );
+  border-radius: 50%;
+  transform: rotate(0deg);
 }
 
-.flor span::before {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, transparent 30%, rgba(255, 182, 193, 0.9) 70%);
-  border-radius: 50% 50% 0 50%;
-  top: 0;
-  left: 50%;
-  margin-left: -20px;
-  transform-origin: 50% 100%;
-  filter: drop-shadow(0 0 3px rgba(255, 105, 180, 0.6));
-}
+/* Posiciones de los 12 girasoles */
+.g1 { top: 5%; left: 5%; }
+.g2 { top: 5%; left: 50%; transform: translateX(-50%); }
+.g3 { top: 5%; right: 5%; }
+.g4 { top: 50%; right: 5%; transform: translateY(-50%); }
+.g5 { bottom: 5%; right: 5%; }
+.g6 { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.g7 { bottom: 5%; left: 5%; }
+.g8 { top: 50%; left: 5%; transform: translateY(-50%); }
+/* Girasoles adicionales en posiciones intermedias */
+.g9 { top: 25%; left: 25%; }
+.g10 { top: 25%; right: 25%; }
+.g11 { bottom: 25%; right: 25%; }
+.g12 { bottom: 25%; left: 25%; }
 
-/* Posicionamiento CORRECTO de los 8 pétalos */
-.flor span:nth-child(1)::before { transform: rotate(0deg) translateY(-30px); }
-.flor span:nth-child(2)::before { transform: rotate(45deg) translateY(-30px); }
-.flor span:nth-child(3)::before { transform: rotate(90deg) translateY(-30px); }
-.flor span:nth-child(4)::before { transform: rotate(135deg) translateY(-30px); }
-.flor span:nth-child(5)::before { transform: rotate(180deg) translateY(-30px); }
-.flor span:nth-child(6)::before { transform: rotate(225deg) translateY(-30px); }
-.flor span:nth-child(7)::before { transform: rotate(270deg) translateY(-30px); }
-.flor span:nth-child(8)::before { transform: rotate(315deg) translateY(-30px); }
-
-/* Posiciones de las flores - CORREGIDAS */
-.flor1 { top: 15%; left: 15%; }
-.flor2 { top: 15%; right: 15%; }
-.flor3 { bottom: 15%; left: 15%; }
-.flor4 { bottom: 15%; right: 15%; }
-
-/* Animación de giro - CORREGIDA */
+/* Animación de giro */
 @keyframes girar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Efecto hover */
+/* Efecto hover para la carta */
 .carta:hover {
   transform: scale(1.02);
   transition: transform 0.3s ease;

@@ -16,7 +16,7 @@ body {
   overflow: hidden;
 }
 
-/* Carta */
+/* Estilo de la carta */
 .carta {
   padding: 2.5rem;
   background: white;
@@ -26,51 +26,56 @@ body {
   max-width: 85%;
   animation: aparecer 1.2s ease-out forwards;
   z-index: 10;
+  transform: scale(0.9);
 }
 
 @keyframes aparecer {
-  to { opacity: 1; transform: scale(1); }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Girasoles corregidos */
 .girasol {
   width: 100px;
   height: 100px;
-  position: absolute;
-  animation: girar 20s linear infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: fixed;
+  animation: girar 25s linear infinite;
+  display: grid;
+  place-items: center;
 }
 
-/* Centro del girasol - CORRECCIÓN */
+/* Centro del girasol - Versión perfectamente centrada */
 .girasol::before {
   content: "";
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background: radial-gradient(circle, #5D2906 20%, #8B4513 70%);
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(circle, #5D2906 30%, #8B4513 80%);
   border-radius: 50%;
   z-index: 10;
-  box-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
-}
-
-/* Pétalos - VERSIÓN CORREGIDA */
-.petalo {
-  position: absolute;
-  width: 22px;
-  height: 50px;
-  background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%);
-  border-radius: 50% 50% 0 0;
-  transform-origin: bottom center;
-  z-index: 1;
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.8);
   top: 50%;
   left: 50%;
-  margin-left: -11px;
-  margin-top: -25px;
+  transform: translate(-50%, -50%);
 }
 
-/* Posicionamiento perfecto de 12 pétalos */
+/* Pétalos perfectamente alineados */
+.petalo {
+  position: absolute;
+  width: 24px;
+  height: 55px;
+  background: linear-gradient(to bottom, #FFD700 0%, #FF8C00 100%);
+  border-radius: 50% 50% 0 0;
+  transform-origin: bottom center;
+  top: 50%;
+  left: 50%;
+  margin-left: -12px;
+  margin-top: -50px;
+}
+
+/* Posicionamiento exacto de 12 pétalos */
 .girasol .petalo:nth-child(1) { transform: rotate(0deg) translateY(-20px); }
 .girasol .petalo:nth-child(2) { transform: rotate(30deg) translateY(-20px); }
 .girasol .petalo:nth-child(3) { transform: rotate(60deg) translateY(-20px); }
@@ -84,27 +89,31 @@ body {
 .girasol .petalo:nth-child(11) { transform: rotate(300deg) translateY(-20px); }
 .girasol .petalo:nth-child(12) { transform: rotate(330deg) translateY(-20px); }
 
-/* Distribución corregida de 12 girasoles */
-.g1 { top: 5%; left: 10%; }
-.g2 { top: 5%; left: 30%; }
-.g3 { top: 5%; right: 10%; }
-.g4 { top: 15%; right: 5%; }
-.g5 { top: 30%; right: 5%; }
-.g6 { top: 50%; right: 5%; transform: translateY(-50%); }
-.g7 { bottom: 5%; right: 10%; }
-.g8 { bottom: 5%; left: 30%; }
-.g9 { bottom: 5%; left: 10%; }
-.g10 { bottom: 15%; left: 5%; }
-.g11 { bottom: 30%; left: 5%; }
-.g12 { top: 30%; left: 5%; }
+/* Distribución perfecta de 16 girasoles */
+.g1 { top: 5%; left: 5%; }
+.g2 { top: 5%; left: 25%; }
+.g3 { top: 5%; left: 50%; transform: translateX(-50%); }
+.g4 { top: 5%; left: 75%; }
+.g5 { top: 5%; right: 5%; }
+.g6 { top: 20%; right: 10%; }
+.g7 { top: 35%; right: 5%; }
+.g8 { top: 50%; right: 5%; transform: translateY(-50%); }
+.g9 { bottom: 35%; right: 5%; }
+.g10 { bottom: 20%; right: 10%; }
+.g11 { bottom: 5%; right: 5%; }
+.g12 { bottom: 5%; left: 75%; }
+.g13 { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.g14 { bottom: 5%; left: 25%; }
+.g15 { bottom: 20%; left: 10%; }
+.g16 { top: 20%; left: 10%; }
 
-/* Animación */
+/* Animación de giro */
 @keyframes girar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Efecto hover */
+/* Efecto hover para la carta */
 .carta:hover {
   transform: scale(1.02);
   transition: transform 0.3s ease;

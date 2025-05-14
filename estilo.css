@@ -16,7 +16,7 @@ body {
   overflow: hidden;
 }
 
-/* Estilo de la carta */
+/* Carta */
 .carta {
   padding: 2.5rem;
   background: white;
@@ -26,86 +26,85 @@ body {
   max-width: 85%;
   animation: aparecer 1.2s ease-out forwards;
   z-index: 10;
-  transform: scale(0.9);
 }
 
 @keyframes aparecer {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Girasoles con pétalos realistas */
+/* Girasoles corregidos */
 .girasol {
   width: 100px;
   height: 100px;
   position: absolute;
-  animation: girar 25s linear infinite;
+  animation: girar 20s linear infinite;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Centro del girasol (semillas) */
+/* Centro del girasol - CORRECCIÓN */
 .girasol::before {
   content: "";
   position: absolute;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background: radial-gradient(circle, #5D2906 20%, #8B4513 70%);
   border-radius: 50%;
   z-index: 10;
-  box-shadow: 0 0 10px rgba(139, 69, 19, 0.8);
+  box-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
 }
 
-/* Estilo de cada pétalo */
+/* Pétalos - VERSIÓN CORREGIDA */
 .petalo {
   position: absolute;
-  width: 25px;
-  height: 60px;
-  background: linear-gradient(to bottom, #FFD700 20%, #FFA500 100%);
+  width: 22px;
+  height: 50px;
+  background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%);
   border-radius: 50% 50% 0 0;
   transform-origin: bottom center;
   z-index: 1;
-  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  top: 50%;
+  left: 50%;
+  margin-left: -11px;
+  margin-top: -25px;
 }
 
-/* Posicionamiento de los 12 pétalos (30° de separación) */
-.girasol .petalo:nth-child(1) { transform: rotate(0deg) translateY(-35px); }
-.girasol .petalo:nth-child(2) { transform: rotate(30deg) translateY(-35px); }
-.girasol .petalo:nth-child(3) { transform: rotate(60deg) translateY(-35px); }
-.girasol .petalo:nth-child(4) { transform: rotate(90deg) translateY(-35px); }
-.girasol .petalo:nth-child(5) { transform: rotate(120deg) translateY(-35px); }
-.girasol .petalo:nth-child(6) { transform: rotate(150deg) translateY(-35px); }
-.girasol .petalo:nth-child(7) { transform: rotate(180deg) translateY(-35px); }
-.girasol .petalo:nth-child(8) { transform: rotate(210deg) translateY(-35px); }
-.girasol .petalo:nth-child(9) { transform: rotate(240deg) translateY(-35px); }
-.girasol .petalo:nth-child(10) { transform: rotate(270deg) translateY(-35px); }
-.girasol .petalo:nth-child(11) { transform: rotate(300deg) translateY(-35px); }
-.girasol .petalo:nth-child(12) { transform: rotate(330deg) translateY(-35px); }
+/* Posicionamiento perfecto de 12 pétalos */
+.girasol .petalo:nth-child(1) { transform: rotate(0deg) translateY(-20px); }
+.girasol .petalo:nth-child(2) { transform: rotate(30deg) translateY(-20px); }
+.girasol .petalo:nth-child(3) { transform: rotate(60deg) translateY(-20px); }
+.girasol .petalo:nth-child(4) { transform: rotate(90deg) translateY(-20px); }
+.girasol .petalo:nth-child(5) { transform: rotate(120deg) translateY(-20px); }
+.girasol .petalo:nth-child(6) { transform: rotate(150deg) translateY(-20px); }
+.girasol .petalo:nth-child(7) { transform: rotate(180deg) translateY(-20px); }
+.girasol .petalo:nth-child(8) { transform: rotate(210deg) translateY(-20px); }
+.girasol .petalo:nth-child(9) { transform: rotate(240deg) translateY(-20px); }
+.girasol .petalo:nth-child(10) { transform: rotate(270deg) translateY(-20px); }
+.girasol .petalo:nth-child(11) { transform: rotate(300deg) translateY(-20px); }
+.girasol .petalo:nth-child(12) { transform: rotate(330deg) translateY(-20px); }
 
-/* Posiciones de los 12 girasoles */
-.g1 { top: 5%; left: 5%; }
-.g2 { top: 5%; left: 50%; transform: translateX(-50%); }
-.g3 { top: 5%; right: 5%; }
-.g4 { top: 20%; right: 5%; }
-.g5 { top: 35%; right: 5%; }
-.g6 { bottom: 35%; right: 5%; }
-.g7 { bottom: 5%; right: 5%; }
-.g8 { bottom: 5%; left: 50%; transform: translateX(-50%); }
-.g9 { bottom: 5%; left: 5%; }
-.g10 { bottom: 20%; left: 5%; }
-.g11 { bottom: 35%; left: 5%; }
-.g12 { top: 35%; left: 5%; }
+/* Distribución corregida de 12 girasoles */
+.g1 { top: 5%; left: 10%; }
+.g2 { top: 5%; left: 30%; }
+.g3 { top: 5%; right: 10%; }
+.g4 { top: 15%; right: 5%; }
+.g5 { top: 30%; right: 5%; }
+.g6 { top: 50%; right: 5%; transform: translateY(-50%); }
+.g7 { bottom: 5%; right: 10%; }
+.g8 { bottom: 5%; left: 30%; }
+.g9 { bottom: 5%; left: 10%; }
+.g10 { bottom: 15%; left: 5%; }
+.g11 { bottom: 30%; left: 5%; }
+.g12 { top: 30%; left: 5%; }
 
-/* Animación de giro */
+/* Animación */
 @keyframes girar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Efecto hover para la carta */
+/* Efecto hover */
 .carta:hover {
   transform: scale(1.02);
   transition: transform 0.3s ease;

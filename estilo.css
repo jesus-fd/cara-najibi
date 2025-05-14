@@ -1,4 +1,4 @@
-/* Reset para evitar conflictos */
+/* Reset y estilos generales */
 * {
   margin: 0;
   padding: 0;
@@ -6,9 +6,9 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   height: 100vh;
-  background-color: #fef6f9;
+  background-color: #fff5f7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,15 +16,17 @@ body {
   overflow: hidden;
 }
 
-/* Carta (con animación FORZADA para debug) */
+/* Estilo de la carta */
 .carta {
-  padding: 2rem;
+  padding: 2.5rem;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  animation: aparecer 1s ease-out;
-  opacity: 0; /* Inicialmente invisible */
-  animation-fill-mode: forwards; /* Mantiene el estado final */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 85%;
+  animation: aparecer 1.2s ease-out forwards;
+  z-index: 10;
+  transform: scale(0.9);
 }
 
 @keyframes aparecer {
@@ -34,15 +36,39 @@ body {
   }
 }
 
-/* Flores (con estilos VISIBLES para debug) */
+/* Flores realistas */
 .flor {
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, yellow 40%, orange 100%);
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
   position: absolute;
-  animation: girar 5s linear infinite;
-  border: 2px solid red; /* Borde rojo para DEBUG */
+  animation: girar 12s linear infinite;
+}
+
+/* Centro de la flor */
+.flor::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #FFD700 30%, #FFA500 100%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+/* Pétalos */
+.flor::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 45%, rgba(255, 105, 180, 0.75) 100%);
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(45deg);
+  filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.7));
 }
 
 /* Posiciones de las flores */
@@ -51,7 +77,14 @@ body {
 .flor3 { bottom: 10%; left: 10%; }
 .flor4 { bottom: 10%; right: 10%; }
 
+/* Animación de giro */
 @keyframes girar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* Efecto hover para interactividad */
+.carta:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }

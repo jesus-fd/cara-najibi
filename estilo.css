@@ -36,15 +36,18 @@ body {
   }
 }
 
-/* Flores con 8 pétalos */
+/* Flores con 8 pétalos - VERSIÓN CORREGIDA */
 .flor {
   width: 100px;
   height: 100px;
   position: absolute;
   animation: girar 15s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Centro de la flor */
+/* Centro de la flor - CORRECCIÓN */
 .flor::before {
   content: "";
   position: absolute;
@@ -52,45 +55,55 @@ body {
   height: 24px;
   background: radial-gradient(circle, #FFD700 30%, #FFA500 100%);
   border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 10;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
 
-/* Contenedor de pétalos */
+/* Pétalos - VERSIÓN CORREGIDA */
 .flor span {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
 }
 
-/* Estilo de cada pétalo */
 .flor span::before {
   content: "";
   position: absolute;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   background: radial-gradient(circle, transparent 30%, rgba(255, 182, 193, 0.9) 70%);
   border-radius: 50% 50% 0 50%;
-  top: 5px;
-  left: 27.5px;
-  transform-origin: bottom right;
+  top: 0;
+  left: 50%;
+  margin-left: -20px;
+  transform-origin: 50% 100%;
   filter: drop-shadow(0 0 3px rgba(255, 105, 180, 0.6));
 }
 
-/* Posicionamiento de los 8 pétalos */
-.flor span:nth-child(1)::before { transform: rotate(0deg); }
-.flor span:nth-child(2)::before { transform: rotate(45deg); }
-.flor span:nth-child(3)::before { transform: rotate(90deg); }
-.flor span:nth-child(4)::before { transform: rotate(135deg); }
-.flor span:nth-child(5)::before { transform: rotate(180deg); }
-.flor span:nth-child(6)::before { transform: rotate(225deg); }
-.flor span:nth-child(7)::before { transform: rotate(270deg); }
-.flor span:nth-child(8)::before { transform: rotate(315deg); }
+/* Posicionamiento CORRECTO de los 8 pétalos */
+.flor span:nth-child(1)::before { transform: rotate(0deg) translateY(-30px); }
+.flor span:nth-child(2)::before { transform: rotate(45deg) translateY(-30px); }
+.flor span:nth-child(3)::before { transform: rotate(90deg) translateY(-30px); }
+.flor span:nth-child(4)::before { transform: rotate(135deg) translateY(-30px); }
+.flor span:nth-child(5)::before { transform: rotate(180deg) translateY(-30px); }
+.flor span:nth-child(6)::before { transform: rotate(225deg) translateY(-30px); }
+.flor span:nth-child(7)::before { transform: rotate(270deg) translateY(-30px); }
+.flor span:nth-child(8)::before { transform: rotate(315deg) translateY(-30px); }
 
-/* Posiciones de las flores */
-.flor1 { top: 10%;
+/* Posiciones de las flores - CORREGIDAS */
+.flor1 { top: 15%; left: 15%; }
+.flor2 { top: 15%; right: 15%; }
+.flor3 { bottom: 15%; left: 15%; }
+.flor4 { bottom: 15%; right: 15%; }
+
+/* Animación de giro - CORREGIDA */
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Efecto hover */
+.carta:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}

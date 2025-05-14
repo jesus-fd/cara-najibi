@@ -1,20 +1,56 @@
-/* [Mantén todo el código anterior excepto la parte de .flor] */
+/* Reset y estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  background-color: #fff5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Estilo de la carta */
+.carta {
+  padding: 2.5rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 85%;
+  animation: aparecer 1.2s ease-out forwards;
+  z-index: 10;
+  transform: scale(0.9);
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 /* Flores con 8 pétalos */
 .flor {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   position: absolute;
   animation: girar 15s linear infinite;
 }
 
-/* Centro amarillo de la flor */
+/* Centro de la flor */
 .flor::before {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, #FFD700 30%, #FF8C00 100%);
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #FFD700 30%, #FFA500 100%);
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -23,16 +59,7 @@
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
 
-/* Pétalos (8 pétalos usando grados de rotación) */
-.flor::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-}
-
-/* Creación de 8 pétalos con pseudoelementos */
+/* Contenedor de pétalos */
 .flor span {
   position: absolute;
   width: 100%;
@@ -41,19 +68,21 @@
   left: 0;
 }
 
+/* Estilo de cada pétalo */
 .flor span::before {
   content: "";
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   background: radial-gradient(circle, transparent 30%, rgba(255, 182, 193, 0.9) 70%);
   border-radius: 50% 50% 0 50%;
-  top: 10px;
-  left: 20px;
+  top: 5px;
+  left: 27.5px;
   transform-origin: bottom right;
+  filter: drop-shadow(0 0 3px rgba(255, 105, 180, 0.6));
 }
 
-/* Posicionamiento de los pétalos (45 grados de separación) */
+/* Posicionamiento de los 8 pétalos */
 .flor span:nth-child(1)::before { transform: rotate(0deg); }
 .flor span:nth-child(2)::before { transform: rotate(45deg); }
 .flor span:nth-child(3)::before { transform: rotate(90deg); }
@@ -63,10 +92,5 @@
 .flor span:nth-child(7)::before { transform: rotate(270deg); }
 .flor span:nth-child(8)::before { transform: rotate(315deg); }
 
-/* Posiciones de las flores (ajustables) */
-.flor1 { top: 10%; left: 10%; }
-.flor2 { top: 10%; right: 10%; }
-.flor3 { bottom: 10%; left: 10%; }
-.flor4 { bottom: 10%; right: 10%; }
-
-/* [Mantén el resto de tu CSS] */
+/* Posiciones de las flores */
+.flor1 { top: 10%;

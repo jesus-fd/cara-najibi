@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Carta Mágica</title>
+  <title>Carta Mágica con Ositos</title>
   <style>
-    /* RESET PARA MÓVILES */
+    /* ESTILOS GENERALES */
     * {
       margin: 0;
       padding: 0;
@@ -33,6 +33,7 @@
       z-index: 20;
       filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
       animation: flotar 3s ease-in-out infinite alternate;
+      cursor: pointer;
     }
     .o1 { top: 10%; left: 10%; }
     .o2 { top: 10%; right: 10%; }
@@ -50,6 +51,26 @@
       pointer-events: none;
     }
 
+    /* GLOBITOS */
+    .globito {
+      position: absolute;
+      background: white;
+      padding: 12px 15px;
+      border-radius: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 25;
+      max-width: 160px;
+      font-size: 0.9rem;
+      animation: aparecer 2s ease-out;
+      color: #e91e63;
+      font-weight: bold;
+      text-align: center;
+    }
+    .g1 { top: 25%; left: 5%; }
+    .g2 { top: 25%; right: 5%; }
+    .g3 { bottom: 25%; left: 5%; }
+    .g4 { bottom: 25%; right: 5%; }
+
     /* CARTA INTERACTIVA */
     .carta-contenedor {
       position: relative;
@@ -57,7 +78,6 @@
       height: 150px;
       perspective: 1000px;
       z-index: 30;
-      margin-top: 20px;
     }
     
     .carta {
@@ -82,7 +102,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
     
     .carta-frente {
@@ -95,15 +115,15 @@
       transform: rotateY(180deg);
       padding: 20px;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #e91e63;
     }
     
     .carta-frente::before {
-      content: "Tócame";
+      content: "¡Tócame!";
       color: white;
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       text-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
@@ -114,9 +134,9 @@
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
       background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
       z-index: 40;
       text-align: center;
       max-width: 80%;
@@ -128,18 +148,44 @@
       transform: translate(-50%, -50%) scale(1);
       opacity: 1;
     }
+    
+    .mensaje button {
+      margin-top: 15px;
+      background: #ff6b8b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
 
     /* ANIMACIONES */
     @keyframes flotar {
-      0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); }
-      50% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
     }
     
     @keyframes caer {
       0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
       20% { opacity: 0.7; }
       80% { opacity: 0.7; }
-      100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 400px) {
+      .osito { font-size: 3rem; }
+      .carta-contenedor { 
+        width: 180px;
+        height: 135px;
+      }
+      .globito { max-width: 140px; }
     }
   </style>
 </head>
@@ -150,9 +196,33 @@
   <div class="osito o3">🧸</div>
   <div class="osito o4">🧸</div>
 
+  <!-- 4 GLOBITOS -->
+  <div class="globito g1">¡Eres especial! ✨</div>
+  <div class="globito g2">Te quiero mucho ❤️</div>
+  <div class="globito g3">¡Sonríe! 😊</div>
+  <div class="globito g4">Eres único 🌟</div>
+
+  <!-- CARTA INTERACTIVA -->
+  <div class="carta-contenedor">
+    <div class="carta" id="carta">
+      <div class="carta-frente"></div>
+      <div class="carta-interior">
+        ¡Hola! 🌸<br>Eres increíblemente importante.
+      </div>
+    </div>
+  </div>
+
+  <!-- MENSAJE SECRETO -->
+  <div class="mensaje" id="mensaje">
+    <h3 style="color: #ff6b8b;">¡Sorpresa!</h3>
+    <p>Hoy es tu día para brillar ✨</p>
+    <button onclick="cerrarMensaje()">Cerrar</button>
+  </div>
+
   <!-- CORAZONES GENERADOS CON JS -->
   <script>
-    for (let i = 0; i < 12; i++) {
+    // Crear 15 corazones
+    for (let i = 0; i < 15; i++) {
       setTimeout(() => {
         const corazon = document.createElement('div');
         corazon.className = 'corazon';
@@ -164,49 +234,28 @@
         document.body.appendChild(corazon);
       }, i * 300);
     }
-  </script>
 
-  <!-- CARTA INTERACTIVA -->
-  <div class="carta-contenedor">
-    <div class="carta" id="carta">
-      <div class="carta-frente"></div>
-      <div class="carta-interior">
-        ¡Eres increíble! 🌟<br>Gracias por ser tú.
-      </div>
-    </div>
-  </div>
-
-  <!-- MENSAJE SECRETO -->
-  <div class="mensaje" id="mensaje">
-    <h3 style="color: #ff6b8b; margin-bottom: 10px;">¡Sorpresa!</h3>
-    <p>El universo te sonríe hoy ✨</p>
-    <button onclick="cerrarMensaje()" style="margin-top: 15px; background: #ff6b8b; color: white; border: none; padding: 8px 15px; border-radius: 20px;">Cerrar</button>
-  </div>
-
-  <!-- INTERACTIVIDAD -->
-  <script>
+    // Interactividad
     const carta = document.getElementById('carta');
     const mensaje = document.getElementById('mensaje');
     
     carta.addEventListener('click', () => {
-      carta.classList.toggle('abierta');
-      
-      if (carta.classList.contains('abierta')) {
-        setTimeout(() => {
-          mensaje.classList.add('mostrar');
-        }, 800);
-      }
+      carta.classList.add('abierta');
+      setTimeout(() => {
+        mensaje.classList.add('mostrar');
+      }, 800);
     });
     
     function cerrarMensaje() {
       mensaje.classList.remove('mostrar');
-      carta.classList.remove('abierta');
+      setTimeout(() => {
+        carta.classList.remove('abierta');
+      }, 300);
     }
     
     // Efecto al tocar ositos
     document.querySelectorAll('.osito').forEach(osito => {
-      osito.addEventListener('click', (e) => {
-        e.stopPropagation();
+      osito.addEventListener('click', () => {
         osito.style.transform = 'translateY(-20px) scale(1.2)';
         setTimeout(() => {
           osito.style.transform = '';

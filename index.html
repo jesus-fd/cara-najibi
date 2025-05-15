@@ -1,90 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Carta Mágica con Ositos</title>
-  <link rel="stylesheet" href="estilo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje Especial</title>
+    <style>
+        /* Estilos básicos para asegurar visibilidad inicial */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- 4 OSITOS -->
-  <div class="osito o1">🧸</div>
-  <div class="osito o2">🧸</div>
-  <div class="osito o3">🧸</div>
-  <div class="osito o4">🧸</div>
-
-  <!-- 4 GLOBITOS -->
-  <div class="globito g1">Eres especial wawas!! ✨</div>
-  <div class="globito g2">Te amo muito ❤️</div>
-  <div class="globito g3">SONRIEEEEEEEEEE 😊</div>
-  <div class="globito g4">Eres única 🌟</div>
-
-  <!-- CARTA INTERACTIVA -->
-  <div class="carta-contenedor">
-    <div class="carta" id="carta">
-      <div class="carta-frente"></div>
-      <div class="carta-interior">
-        Holiiiii 🌸<br>Eres increíblemente importante.
-      </div>
-    </div>
-  </div>
-
-  <!-- MENSAJE SECRETO CON WHATSAPP -->
-  <div class="mensaje" id="mensaje">
-    <h3>¡Sorpresa!</h3>
-    <p>NUEVO MESESITO JUNTOS JIJI ✨</p>
-    <a href="https://wa.me/51924940754?text=CABEZA%20DE%20ANOOOOOOOOO" class="whatsapp-btn" target="_blank">¡Envíame un mensaje!</a>
-  </div>
-
-  <!-- CORAZONES GENERADOS CON JS -->
-  <script>
-    // Crear 15 corazones
-    for (let i = 0; i < 15; i++) {
-      setTimeout(() => {
-        const corazon = document.createElement('div');
-        corazon.className = 'corazon';
-        corazon.innerHTML = '❤️';
-        corazon.style.left = Math.random() * 100 + 'vw';
-        corazon.style.animationDuration = (Math.random() * 5 + 5) + 's';
-        corazon.style.animationDelay = (Math.random() * 3) + 's';
-        corazon.style.fontSize = (Math.random() * 0.8 + 0.8) + 'rem';
-        document.body.appendChild(corazon);
-      }, i * 300);
-    }
-
-    // Interactividad
-    const carta = document.getElementById('carta');
-    const mensaje = document.getElementById('mensaje');
+    <div class="decoration top-left">👨</div>
+    <div class="decoration top-right">👔</div>
+    <div class="decoration bottom-left">🧔</div>
+    <div class="decoration bottom-right">👴</div>
     
-    carta.addEventListener('click', () => {
-      carta.classList.add('abierta');
-      setTimeout(() => {
-        mensaje.classList.add('mostrar');
-      }, 800);
-    });
-
-    // Efecto al tocar ositos
-    document.querySelectorAll('.osito').forEach(osito => {
-      osito.addEventListener('click', (e) => {
-        e.stopPropagation();
-        osito.style.transform = 'translateY(-20px) scale(1.2)';
-        setTimeout(() => {
-          osito.style.transform = '';
-        }, 500);
+    <div class="container">
+        <h1>Toque el balón para revelar el mensaje</h1>
         
-        // Crear corazón al tocar osito
-        const corazon = document.createElement('div');
-        corazon.innerHTML = '❤️';
-        corazon.style.position = 'absolute';
-        corazon.style.fontSize = '2rem';
-        corazon.style.color = '#ff6b8b';
-        corazon.style.left = osito.offsetLeft + 30 + 'px';
-        corazon.style.top = osito.offsetTop + 'px';
-        corazon.style.animation = 'aparecer 1s ease-out, caer 2s linear forwards';
-        document.body.appendChild(corazon);
-        setTimeout(() => corazon.remove(), 2000);
-      });
-    });
-  </script>
+        <div class="ball" id="ball">
+            <span class="tooltip">Tócame</span>
+        </div>
+        
+        <div id="message" class="message" style="display: none;">
+            MÁNDAME UN MENSAJE TILIN
+        </div>
+        
+        <a id="whatsappBtn" class="btn" href="#" style="display: none;" target="_blank">Enviar Mensaje</a>
+    </div>
+    
+    <script>
+        document.getElementById('ball').addEventListener('click', function() {
+            const message = document.getElementById('message');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            
+            message.style.display = 'block';
+            whatsappBtn.href = `https://wa.me/924940754?text=${encodeURIComponent('COMO HICISTE PARA COLOCAR UN MENSAJE EN MI TELEFONO SIN NISIQUIERA TENERLO')}`;
+            whatsappBtn.style.display = 'inline-block';
+            
+            this.style.animation = 'none';
+            void this.offsetWidth;
+            this.style.animation = 'pulse 0.5s';
+        });
+    </script>
 </body>
 </html>

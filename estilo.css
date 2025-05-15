@@ -7,97 +7,67 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #fff5f5;
+  background-color: #fff0f5;
   height: 100vh;
   overflow: hidden;
   position: relative;
 }
 
-/* ROSAS (8 alrededor) */
-.rosa {
-  width: 100px;
-  height: 100px;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-/* Posiciones de las rosas */
-.r1 { top: 10%; left: 5%; }
-.r2 { top: 10%; right: 5%; }
-.r3 { bottom: 10%; left: 5%; }
-.r4 { bottom: 10%; right: 5%; }
-.r5 { top: 50%; left: 2%; transform: translateY(-50%); }
-.r6 { top: 50%; right: 2%; transform: translateY(-50%); }
-.r7 { top: 20%; left: 50%; transform: translateX(-50%); }
-.r8 { bottom: 20%; left: 50%; transform: translateX(-50%); }
-
-/* PÉTALOS (3 capas de rosas) */
-.petalo {
-  position: absolute;
-  background: linear-gradient(to bottom, #FFC0CB 0%, #FF69B4 100%);
-  border-radius: 50% 50% 50% 50%;
-  transform-origin: bottom center;
-  opacity: 0.9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Capa 1 (exterior) */
-.petalo.capa-1 {
-  width: 40px;
-  height: 50px;
-  transform: 
-    rotate(calc(var(--n) * 45deg)) 
-    translateY(calc(-1 * var(--layer) * 10px));
-}
-
-/* Capa 2 (intermedia) */
-.petalo.capa-2 {
-  width: 35px;
-  height: 45px;
-  transform: 
-    rotate(calc(var(--n) * 45deg + 10deg)) 
-    translateY(calc(-1 * var(--layer) * 8px));
-}
-
-/* Capa 3 (interior) */
-.petalo.capa-3 {
-  width: 30px;
-  height: 40px;
-  transform: 
-    rotate(calc(var(--n) * 45deg + 20deg)) 
-    translateY(calc(-1 * var(--layer) * 6px));
-}
-
-/* CENTRO DE LA ROSA */
-.centro-rosa {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background: #FFD700;
-  border-radius: 50%;
-  z-index: 20;
-  box-shadow: 
-    0 0 8px rgba(255, 215, 0, 0.8),
-    inset 0 0 10px rgba(255, 69, 0, 0.3);
-}
-
 /* OSITOS DE PELUCHE */
 .osito {
   position: fixed;
-  font-size: 3.5rem;
-  z-index: 15;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
-  animation: flotar 4s ease-in-out infinite alternate;
+  font-size: 4rem;
+  z-index: 20;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: flotar 3s ease-in-out infinite alternate;
 }
 
-/* Posiciones de los ositos */
 .o1 { top: 15%; left: 20%; animation-delay: 0s; }
 .o2 { top: 15%; right: 20%; animation-delay: 0.5s; }
 .o3 { bottom: 15%; left: 20%; animation-delay: 1s; }
 .o4 { bottom: 15%; right: 20%; animation-delay: 1.5s; }
+
+/* CORAZONES */
+.corazon {
+  position: fixed;
+  font-size: 1.8rem;
+  color: #ff6b8b;
+  z-index: 5;
+  animation: caer 6s linear infinite;
+  opacity: 0.7;
+}
+
+/* GLOBITOS DE DIÁLOGO */
+.globito {
+  position: fixed;
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 30;
+  max-width: 200px;
+  text-align: center;
+  font-size: 1rem;
+  animation: aparecer 2s ease-out;
+}
+
+.globito::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid white;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.g1 { top: 30%; left: 25%; }
+.g2 { top: 30%; right: 25%; }
+.g3 { bottom: 30%; left: 25%; }
+.g4 { bottom: 30%; right: 25%; }
 
 /* ANIMACIONES */
 @keyframes flotar {
@@ -105,32 +75,20 @@ body {
   50% { transform: translateY(-25px) rotate(5deg); }
 }
 
-/* CARTA CENTRAL (opcional) */
-.carta {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2rem;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  z-index: 30;
-  animation: aparecer 1.5s ease-out;
+@keyframes caer {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
 @keyframes aparecer {
-  from { opacity: 0; transform: translate(-50%, -40%); }
-  to { opacity: 1; transform: translate(-50%, -50%); }
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .rosa { width: 70px; height: 70px; }
-  .petalo.capa-1 { width: 30px; height: 40px; }
-  .petalo.capa-2 { width: 25px; height: 35px; }
-  .petalo.capa-3 { width: 20px; height: 30px; }
-  .centro-rosa { width: 20px; height: 20px; }
-  .osito { font-size: 2.5rem; }
+  .osito { font-size: 3rem; }
+  .globito { max-width: 150px; font-size: 0.9rem; }
 }

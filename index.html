@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Girasoles y Ositos Mágicos</title>
+  <title>Rosas y Ositos</title>
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  <!-- 8 GIRASOLES alrededor de la pantalla -->
-  <div class="girasol g1"></div>
-  <div class="girasol g2"></div>
-  <div class="girasol g3"></div>
-  <div class="girasol g4"></div>
-  <div class="girasol g5"></div>
-  <div class="girasol g6"></div>
-  <div class="girasol g7"></div>
-  <div class="girasol g8"></div>
+  <!-- 8 ROSAS alrededor de la pantalla -->
+  <div class="rosa r1"></div>
+  <div class="rosa r2"></div>
+  <div class="rosa r3"></div>
+  <div class="rosa r4"></div>
+  <div class="rosa r5"></div>
+  <div class="rosa r6"></div>
+  <div class="rosa r7"></div>
+  <div class="rosa r8"></div>
 
   <!-- 4 OSITOS DE PELUCHE -->
   <div class="osito o1">🧸</div>
@@ -26,30 +26,24 @@
   <!-- CARTA CENTRAL (opcional) -->
   <div class="carta">
     <h1>¡Hola!</h1>
-    <p>Diseño con girasoles y ositos ✨</p>
+    <p>Diseño con rosas y ositos ✨</p>
   </div>
 
   <!-- Script para generar pétalos dinámicamente -->
   <script>
-    // Generar pétalos para los girasoles
-    document.querySelectorAll('.girasol').forEach(girasol => {
-      for (let i = 0; i < 14; i++) {
-        const petalo = document.createElement('div');
-        petalo.className = 'petalo';
-        petalo.style.setProperty('--n', i);
-        girasol.appendChild(petalo);
+    // Generar pétalos para las rosas (3 capas de pétalos)
+    document.querySelectorAll('.rosa').forEach(rosa => {
+      for (let layer = 1; layer <= 3; layer++) {
+        for (let i = 0; i < 8; i++) {
+          const petalo = document.createElement('div');
+          petalo.className = `petalo capa-${layer}`;
+          petalo.style.setProperty('--n', i);
+          petalo.style.setProperty('--layer', layer);
+          rosa.appendChild(petalo);
+        }
       }
-      girasol.innerHTML += `
-        <div class="centro-girasol">
-          <div class="semillas"></div>
-        </div>
-      `;
-    });
-
-    // Generar semillas del centro
-    const semillasHTML = Array(36).fill('<div class="semilla"></div>').join('');
-    document.querySelectorAll('.semillas').forEach(semillas => {
-      semillas.innerHTML = semillasHTML;
+      // Centro de la rosa
+      rosa.innerHTML += '<div class="centro-rosa"></div>';
     });
   </script>
 </body>

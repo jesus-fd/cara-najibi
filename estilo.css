@@ -7,33 +7,13 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  height: 100vh;
   background-color: #fff9f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
-/* CARTA */
-.carta {
-  padding: 2.5rem;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 85%;
-  z-index: 10;
-  animation: aparecer 1s ease-out;
-}
-
-@keyframes aparecer {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* GIRASOLES CON CENTRO PERFECTO */
+/* GIRASOLES (8 alrededor) */
 .girasol {
   width: 120px;
   height: 120px;
@@ -41,72 +21,103 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* CENTRO MARRÓN - ¡VERSIÓN CORREGIDA! */
-.centro-girasol {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #5D2906 40%, #8B4513 90%);
-  border-radius: 50%;
   z-index: 10;
-  box-shadow: 0 0 10px rgba(139, 69, 19, 0.8);
-  /* CENTRADO MATEMÁTICO PERFECTO */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
-/* PÉTALOS AMARILLOS */
+/* Posiciones de los girasoles */
+.g1 { top: 10%; left: 5%; }
+.g2 { top: 10%; right: 5%; }
+.g3 { bottom: 10%; left: 5%; }
+.g4 { bottom: 10%; right: 5%; }
+.g5 { top: 50%; left: 2%; transform: translateY(-50%); }
+.g6 { top: 50%; right: 2%; transform: translateY(-50%); }
+.g7 { top: 20%; left: 50%; transform: translateX(-50%); }
+.g8 { bottom: 20%; left: 50%; transform: translateX(-50%); }
+
+/* PÉTALOS (14 por girasol) */
 .petalo {
   position: absolute;
-  width: 28px;
-  height: 65px;
-  background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%);
+  width: 22px;
+  height: 70px;
+  background: linear-gradient(to bottom, #FFD700 0%, #FF8C00 100%);
   border-radius: 50% 50% 0 0;
   transform-origin: bottom center;
-  top: calc(50% - 32px);
-  left: calc(50% - 14px);
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+  transform: rotate(calc(var(--n) * 25.7deg)) translateY(-35px);
+  opacity: 0.9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* POSICIONAMIENTO DE LOS 12 PÉTALOS */
-.petalo:nth-child(1) { transform: rotate(0deg) translateY(-30px); }
-.petalo:nth-child(2) { transform: rotate(30deg) translateY(-30px); }
-.petalo:nth-child(3) { transform: rotate(60deg) translateY(-30px); }
-.petalo:nth-child(4) { transform: rotate(90deg) translateY(-30px); }
-.petalo:nth-child(5) { transform: rotate(120deg) translateY(-30px); }
-.petalo:nth-child(6) { transform: rotate(150deg) translateY(-30px); }
-.petalo:nth-child(7) { transform: rotate(180deg) translateY(-30px); }
-.petalo:nth-child(8) { transform: rotate(210deg) translateY(-30px); }
-.petalo:nth-child(9) { transform: rotate(240deg) translateY(-30px); }
-.petalo:nth-child(10) { transform: rotate(270deg) translateY(-30px); }
-.petalo:nth-child(11) { transform: rotate(300deg) translateY(-30px); }
-.petalo:nth-child(12) { transform: rotate(330deg) translateY(-30px); }
+/* CENTRO DEL GIRASOL (con semillas) */
+.centro-girasol {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #5D2906;
+  border-radius: 50%;
+  z-index: 20;
+  box-shadow: 
+    0 0 10px rgba(139, 69, 19, 0.8),
+    inset 0 0 10px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 5px;
+}
 
-/* POSICIÓN DE LOS 4 GIRASOLES */
-.g1 { top: 15%; left: 10%; }
-.g2 { top: 15%; right: 10%; }
-.g3 { bottom: 15%; left: 10%; }
-.g4 { bottom: 15%; right: 10%; }
+.semilla {
+  width: 4px;
+  height: 4px;
+  background: #8B4513;
+  border-radius: 50%;
+  margin: 1px;
+  box-shadow: 0 0 2px rgba(255, 215, 0, 0.5);
+}
 
 /* OSITOS DE PELUCHE */
 .osito {
   position: fixed;
-  font-size: 3rem;
-  z-index: 5;
-  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
-  animation: flotar 3s ease-in-out infinite alternate;
+  font-size: 3.5rem;
+  z-index: 15;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+  animation: flotar 4s ease-in-out infinite alternate;
 }
 
-/* POSICIÓN DE LOS OSITOS */
-.o1 { top: 10%; left: 20%; }
-.o2 { top: 10%; right: 20%; }
-.o3 { bottom: 10%; left: 20%; }
-.o4 { bottom: 10%; right: 20%; }
+/* Posiciones de los ositos */
+.o1 { top: 15%; left: 20%; animation-delay: 0s; }
+.o2 { top: 15%; right: 20%; animation-delay: 0.5s; }
+.o3 { bottom: 15%; left: 20%; animation-delay: 1s; }
+.o4 { bottom: 15%; right: 20%; animation-delay: 1.5s; }
 
-/* ANIMACIÓN DE FLOTAR */
+/* ANIMACIONES */
 @keyframes flotar {
-  from { transform: translateY(0); }
-  to { transform: translateY(-20px); }
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-25px) rotate(5deg); }
+}
+
+/* CARTA CENTRAL (opcional) */
+.carta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 30;
+  animation: aparecer 1.5s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .girasol { width: 90px; height: 90px; }
+  .petalo { width: 16px; height: 50px; }
+  .centro-girasol { width: 40px; height: 40px; }
+  .osito { font-size: 2.5rem; }
 }

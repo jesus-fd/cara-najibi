@@ -1,4 +1,4 @@
-/* Reset y estilos generales */
+/* ESTILOS GENERALES */
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@ body {
   overflow: hidden;
 }
 
-/* Carta */
+/* CARTA */
 .carta {
   padding: 2.5rem;
   background: white;
@@ -25,7 +25,6 @@ body {
   text-align: center;
   max-width: 85%;
   z-index: 10;
-  position: relative;
   animation: aparecer 1s ease-out;
 }
 
@@ -34,76 +33,80 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Girasoles con pétalos reales */
+/* GIRASOLES CON CENTRO PERFECTO */
 .girasol {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Centro del girasol */
-.girasol::before {
-  content: "";
+/* CENTRO MARRÓN - ¡VERSIÓN CORREGIDA! */
+.centro-girasol {
   position: absolute;
-  width: 35px;
-  height: 35px;
-  background: radial-gradient(circle, #5D2906 30%, #8B4513 80%);
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #5D2906 40%, #8B4513 90%);
   border-radius: 50%;
-  z-index: 2;
-  box-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.8);
+  /* CENTRADO MATEMÁTICO PERFECTO */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Pétalos individuales */
+/* PÉTALOS AMARILLOS */
 .petalo {
   position: absolute;
-  width: 25px;
-  height: 60px;
+  width: 28px;
+  height: 65px;
   background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%);
   border-radius: 50% 50% 0 0;
   transform-origin: bottom center;
-  z-index: 1;
+  top: calc(50% - 32px);
+  left: calc(50% - 14px);
 }
 
-/* Posicionamiento de los 12 pétalos */
-.girasol .petalo:nth-child(1) { transform: rotate(0deg) translateY(-30px); }
-.girasol .petalo:nth-child(2) { transform: rotate(30deg) translateY(-30px); }
-.girasol .petalo:nth-child(3) { transform: rotate(60deg) translateY(-30px); }
-.girasol .petalo:nth-child(4) { transform: rotate(90deg) translateY(-30px); }
-.girasol .petalo:nth-child(5) { transform: rotate(120deg) translateY(-30px); }
-.girasol .petalo:nth-child(6) { transform: rotate(150deg) translateY(-30px); }
-.girasol .petalo:nth-child(7) { transform: rotate(180deg) translateY(-30px); }
-.girasol .petalo:nth-child(8) { transform: rotate(210deg) translateY(-30px); }
-.girasol .petalo:nth-child(9) { transform: rotate(240deg) translateY(-30px); }
-.girasol .petalo:nth-child(10) { transform: rotate(270deg) translateY(-30px); }
-.girasol .petalo:nth-child(11) { transform: rotate(300deg) translateY(-30px); }
-.girasol .petalo:nth-child(12) { transform: rotate(330deg) translateY(-30px); }
+/* POSICIONAMIENTO DE LOS 12 PÉTALOS */
+.petalo:nth-child(1) { transform: rotate(0deg) translateY(-30px); }
+.petalo:nth-child(2) { transform: rotate(30deg) translateY(-30px); }
+.petalo:nth-child(3) { transform: rotate(60deg) translateY(-30px); }
+.petalo:nth-child(4) { transform: rotate(90deg) translateY(-30px); }
+.petalo:nth-child(5) { transform: rotate(120deg) translateY(-30px); }
+.petalo:nth-child(6) { transform: rotate(150deg) translateY(-30px); }
+.petalo:nth-child(7) { transform: rotate(180deg) translateY(-30px); }
+.petalo:nth-child(8) { transform: rotate(210deg) translateY(-30px); }
+.petalo:nth-child(9) { transform: rotate(240deg) translateY(-30px); }
+.petalo:nth-child(10) { transform: rotate(270deg) translateY(-30px); }
+.petalo:nth-child(11) { transform: rotate(300deg) translateY(-30px); }
+.petalo:nth-child(12) { transform: rotate(330deg) translateY(-30px); }
 
-/* Posición de los girasoles */
+/* POSICIÓN DE LOS 4 GIRASOLES */
 .g1 { top: 15%; left: 10%; }
 .g2 { top: 15%; right: 10%; }
 .g3 { bottom: 15%; left: 10%; }
 .g4 { bottom: 15%; right: 10%; }
 
-/* Ositos de peluche */
+/* OSITOS DE PELUCHE */
 .osito {
   position: fixed;
-  font-size: 2.5rem;
+  font-size: 3rem;
   z-index: 5;
   filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
   animation: flotar 3s ease-in-out infinite alternate;
 }
 
-/* Posición de los ositos */
+/* POSICIÓN DE LOS OSITOS */
 .o1 { top: 10%; left: 20%; }
 .o2 { top: 10%; right: 20%; }
 .o3 { bottom: 10%; left: 20%; }
 .o4 { bottom: 10%; right: 20%; }
 
-/* Animación de flotar */
+/* ANIMACIÓN DE FLOTAR */
 @keyframes flotar {
   from { transform: translateY(0); }
-  to { transform: translateY(-15px); }
+  to { transform: translateY(-20px); }
 }

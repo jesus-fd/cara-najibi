@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Carta Mágica con Ositos</title>
-  <style>
-    /* [Todo el contenido CSS anterior permanece igual] */
-  </style>
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
   <!-- 4 OSITOS -->
@@ -31,15 +29,11 @@
     </div>
   </div>
 
-  <!-- MENSAJE SECRETO (MODIFICADO) -->
+  <!-- MENSAJE SECRETO CON WHATSAPP -->
   <div class="mensaje" id="mensaje">
-    <h3 style="color: #ff6b8b;">¡Sorpresa!</h3>
+    <h3>¡Sorpresa!</h3>
     <p>NUEVO MESESITO JUNTOS JIJI ✨</p>
-    <a href="https://wa.me/51924940754?text=CABEZA%20DE%20ANOOOOOOOOO" target="_blank" style="text-decoration: none;">
-      <button style="margin-top: 15px; background: #ff6b8b; color: white; border: none; padding: 10px 20px; border-radius: 50px; font-size: 0.9rem; cursor: pointer;">
-        ¡Envíame un mensaje!
-      </button>
-    </a>
+    <a href="https://wa.me/51924940754?text=CABEZA%20DE%20ANOOOOOOOOO" class="whatsapp-btn" target="_blank">¡Envíame un mensaje!</a>
   </div>
 
   <!-- CORAZONES GENERADOS CON JS -->
@@ -68,14 +62,27 @@
         mensaje.classList.add('mostrar');
       }, 800);
     });
-    
+
     // Efecto al tocar ositos
     document.querySelectorAll('.osito').forEach(osito => {
-      osito.addEventListener('click', () => {
+      osito.addEventListener('click', (e) => {
+        e.stopPropagation();
         osito.style.transform = 'translateY(-20px) scale(1.2)';
         setTimeout(() => {
           osito.style.transform = '';
         }, 500);
+        
+        // Crear corazón al tocar osito
+        const corazon = document.createElement('div');
+        corazon.innerHTML = '❤️';
+        corazon.style.position = 'absolute';
+        corazon.style.fontSize = '2rem';
+        corazon.style.color = '#ff6b8b';
+        corazon.style.left = osito.offsetLeft + 30 + 'px';
+        corazon.style.top = osito.offsetTop + 'px';
+        corazon.style.animation = 'aparecer 1s ease-out, caer 2s linear forwards';
+        document.body.appendChild(corazon);
+        setTimeout(() => corazon.remove(), 2000);
       });
     });
   </script>

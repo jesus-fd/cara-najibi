@@ -3,48 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rosas y Ositos</title>
-  <link rel="stylesheet" href="estilo.css">
+  <title>Ositos, Corazones y Globitos</title>
+  <style>
+    /* ESTILOS GENERALES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff0f5;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* OSITOS DE PELUCHE */
+    .osito {
+      position: fixed;
+      font-size: 4rem;
+      z-index: 20;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      animation: flotar 3s ease-in-out infinite alternate;
+    }
+    .o1 { top: 15%; left: 20%; animation-delay: 0s; }
+    .o2 { top: 15%; right: 20%; animation-delay: 0.5s; }
+    .o3 { bottom: 15%; left: 20%; animation-delay: 1s; }
+    .o4 { bottom: 15%; right: 20%; animation-delay: 1.5s; }
+
+    /* CORAZONES */
+    .corazon {
+      position: fixed;
+      font-size: 1.8rem;
+      color: #ff6b8b;
+      z-index: 5;
+      animation: caer 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    /* GLOBITOS DE DIÁLOGO */
+    .globito {
+      position: fixed;
+      background: white;
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 30;
+      max-width: 200px;
+      text-align: center;
+      font-size: 1rem;
+      animation: aparecer 2s ease-out;
+    }
+    .globito::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 15px solid white;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .g1 { top: 30%; left: 25%; }
+    .g2 { top: 30%; right: 25%; }
+    .g3 { bottom: 30%; left: 25%; }
+    .g4 { bottom: 30%; right: 25%; }
+
+    /* ANIMACIONES */
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-25px) rotate(5deg); }
+    }
+    @keyframes caer {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .osito { font-size: 3rem; }
+      .globito { max-width: 150px; font-size: 0.9rem; }
+    }
+  </style>
 </head>
 <body>
-  <!-- 8 ROSAS alrededor de la pantalla -->
-  <div class="rosa r1"></div>
-  <div class="rosa r2"></div>
-  <div class="rosa r3"></div>
-  <div class="rosa r4"></div>
-  <div class="rosa r5"></div>
-  <div class="rosa r6"></div>
-  <div class="rosa r7"></div>
-  <div class="rosa r8"></div>
-
   <!-- 4 OSITOS DE PELUCHE -->
   <div class="osito o1">🧸</div>
   <div class="osito o2">🧸</div>
   <div class="osito o3">🧸</div>
   <div class="osito o4">🧸</div>
 
-  <!-- CARTA CENTRAL (opcional) -->
-  <div class="carta">
-    <h1>¡Hola!</h1>
-    <p>Diseño con rosas y ositos ✨</p>
-  </div>
-
-  <!-- Script para generar pétalos dinámicamente -->
+  <!-- 20 CORAZONES FLOTANTES (generados con JS) -->
   <script>
-    // Generar pétalos para las rosas (3 capas de pétalos)
-    document.querySelectorAll('.rosa').forEach(rosa => {
-      for (let layer = 1; layer <= 3; layer++) {
-        for (let i = 0; i < 8; i++) {
-          const petalo = document.createElement('div');
-          petalo.className = `petalo capa-${layer}`;
-          petalo.style.setProperty('--n', i);
-          petalo.style.setProperty('--layer', layer);
-          rosa.appendChild(petalo);
-        }
-      }
-      // Centro de la rosa
-      rosa.innerHTML += '<div class="centro-rosa"></div>';
-    });
+    // Crear corazones
+    for (let i = 0; i < 20; i++) {
+      const corazon = document.createElement('div');
+      corazon.className = 'corazon';
+      corazon.innerHTML = '❤️';
+      corazon.style.left = Math.random() * 100 + 'vw';
+      corazon.style.animationDuration = (Math.random() * 4 + 3) + 's';
+      corazon.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(corazon);
+    }
   </script>
+
+  <!-- 4 GLOBITOS DE DIÁLOGO -->
+  <div class="globito g1">¡Hola! Soy un osito 🧸</div>
+  <div class="globito g2">Te quiero mucho ❤️</div>
+  <div class="globito g3">¿Jugamos juntos? 🎈</div>
+  <div class="globito g4">¡Eres especial! ✨</div>
 </body>
 </html>

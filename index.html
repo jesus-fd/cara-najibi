@@ -2,157 +2,170 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ositos, Corazones y Globitos Mágicos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ositos Mágicos</title>
   <style>
-    /* ESTILOS GENERALES */
+    /* RESET PARA MÓVILES */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
+    
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #fff0f5; /* Fondo rosado claro */
+      background-color: #ffe6ee;
       height: 100vh;
+      width: 100vw;
       overflow: hidden;
-      position: relative;
+      position: fixed;
+      touch-action: manipulation;
     }
 
-    /* OSITOS DE PELUCHE */
+    /* OSITOS (más grandes y mejor posicionados) */
     .osito {
-      position: fixed;
-      font-size: 4rem;
+      position: absolute;
+      font-size: 3.5rem;
       z-index: 20;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
       animation: flotar 3s ease-in-out infinite alternate;
-      cursor: pointer; /* Para que parezca interactivo */
     }
-    .o1 { top: 15%; left: 20%; animation-delay: 0s; }
-    .o2 { top: 15%; right: 20%; animation-delay: 0.5s; }
-    .o3 { bottom: 15%; left: 20%; animation-delay: 1s; }
-    .o4 { bottom: 15%; right: 20%; animation-delay: 1.5s; }
+    .o1 { top: 10%; left: 10%; }
+    .o2 { top: 10%; right: 10%; }
+    .o3 { bottom: 15%; left: 10%; }
+    .o4 { bottom: 15%; right: 10%; }
 
-    /* CORAZONES FLOTANTES */
+    /* CORAZONES (más pequeños y menos cantidad) */
     .corazon {
-      position: fixed;
-      font-size: 1.8rem;
-      color: #ff6b8b; /* Color rosa fuerte */
+      position: absolute;
+      font-size: 1.2rem;
+      color: #ff6b8b;
       z-index: 5;
-      animation: caer 6s linear infinite;
+      animation: caer 8s linear infinite;
       opacity: 0.7;
-      user-select: none; /* Evita que se seleccione el texto */
+      pointer-events: none;
     }
 
-    /* GLOBITOS DE DIÁLOGO */
+    /* GLOBITOS (rediseñados para móvil) */
     .globito {
-      position: fixed;
+      position: absolute;
       background: white;
-      padding: 15px 20px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 12px 15px;
+      border-radius: 18px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       z-index: 30;
-      max-width: 200px;
+      max-width: 160px;
       text-align: center;
-      font-size: 1rem;
-      animation: aparecer 2s ease-out;
+      font-size: 0.9rem;
+      line-height: 1.3;
+      animation: aparecer 1.5s ease-out;
       font-weight: bold;
-      color: #555;
+      color: #e91e63;
     }
     .globito::after {
       content: '';
       position: absolute;
       width: 0;
       height: 0;
-      border-left: 12px solid transparent;
-      border-right: 12px solid transparent;
-      border-top: 18px solid white;
-      bottom: -18px;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 12px solid white;
+      bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
     }
-    .g1 { top: 30%; left: 25%; }
-    .g2 { top: 30%; right: 25%; }
-    .g3 { bottom: 30%; left: 25%; }
-    .g4 { bottom: 30%; right: 25%; }
+    .g1 { top: 25%; left: 5%; }
+    .g2 { top: 25%; right: 5%; }
+    .g3 { bottom: 25%; left: 5%; }
+    .g4 { bottom: 25%; right: 5%; }
 
-    /* ANIMACIONES */
+    /* ANIMACIONES OPTIMIZADAS */
     @keyframes flotar {
-      0%, 100% { transform: translateY(0) rotate(-5deg); }
-      50% { transform: translateY(-25px) rotate(5deg); }
+      0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); }
+      50% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
     }
     @keyframes caer {
       0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.7; }
-      90% { opacity: 0.7; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+      20% { opacity: 0.7; }
+      80% { opacity: 0.7; }
+      100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
     }
     @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* EFECTO AL HACER CLICK EN OSITOS */
-    .osito:active {
-      transform: scale(1.1);
-      transition: transform 0.2s;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .osito { font-size: 3rem; }
-      .globito { 
-        max-width: 150px; 
-        font-size: 0.9rem;
-        padding: 10px 15px;
-      }
-      .g1, .g2 { top: 20%; }
-      .g3, .g4 { bottom: 20%; }
+    /* BOTÓN PARA RECARGAR (útil en móviles) */
+    .reload-btn {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff6b8b;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 0.8rem;
+      z-index: 40;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
-  <!-- 4 OSITOS DE PELUCHE -->
+  <!-- 4 OSITOS -->
   <div class="osito o1">🧸</div>
   <div class="osito o2">🧸</div>
   <div class="osito o3">🧸</div>
   <div class="osito o4">🧸</div>
 
-  <!-- 20 CORAZONES (generados con JS) -->
+  <!-- CORAZONES GENERADOS CON JS -->
   <script>
-    // Crear corazones aleatorios
-    function crearCorazones() {
-      const colores = ["#ff6b8b", "#ff8fab", "#ffb3c6"]; // Variantes de rosa
-      for (let i = 0; i < 20; i++) {
+    // Cantidad reducida para móviles
+    for (let i = 0; i < 12; i++) {
+      setTimeout(() => {
         const corazon = document.createElement('div');
         corazon.className = 'corazon';
         corazon.innerHTML = '❤️';
         corazon.style.left = Math.random() * 100 + 'vw';
-        corazon.style.animationDuration = (Math.random() * 4 + 3) + 's';
-        corazon.style.animationDelay = Math.random() * 5 + 's';
-        corazon.style.color = colores[Math.floor(Math.random() * colores.length)];
-        corazon.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
+        corazon.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        corazon.style.animationDelay = (Math.random() * 3) + 's';
+        corazon.style.fontSize = (Math.random() * 0.8 + 0.8) + 'rem';
         document.body.appendChild(corazon);
-      }
+      }, i * 300);
     }
-    crearCorazones();
   </script>
 
-  <!-- 4 GLOBITOS CON MENSAJES -->
-  <div class="globito g1">¡Hola! Soy tu osito favorito 🧸</div>
-  <div class="globito g2">¿Sabías que eres increíble? 💖</div>
-  <div class="globito g3">¡Vamos a jugar juntos! 🎠</div>
-  <div class="globito g4">Te mando un abrazo gigante 🤗</div>
+  <!-- GLOBITOS -->
+  <div class="globito g1">¡Hola! 👋</div>
+  <div class="globito g2">Eres especial ✨</div>
+  <div class="globito g3">Te quiero ❤️</div>
+  <div class="globito g4">¡Sonríe! 😊</div>
 
-  <!-- INTERACTIVIDAD: Haz que los ositos "salten" al hacer clic -->
+  <!-- BOTÓN DE RECARGA -->
+  <button class="reload-btn" onclick="window.location.reload()">Volver a empezar</button>
+
+  <!-- INTERACTIVIDAD TÁCTIL -->
   <script>
     document.querySelectorAll('.osito').forEach(osito => {
       osito.addEventListener('click', () => {
-        osito.style.animation = 'none';
-        osito.style.transform = 'translateY(-30px) rotate(10deg)';
+        osito.style.transform = 'translateY(-20px) scale(1.2)';
         setTimeout(() => {
-          osito.style.animation = 'flotar 3s ease-in-out infinite alternate';
+          osito.style.transform = '';
         }, 500);
+        
+        // Crear efecto de corazón al tocar
+        const corazon = document.createElement('div');
+        corazon.innerHTML = '❤️';
+        corazon.style.position = 'absolute';
+        corazon.style.fontSize = '1.5rem';
+        corazon.style.color = '#ff6b8b';
+        corazon.style.left = osito.offsetLeft + 30 + 'px';
+        corazon.style.top = osito.offsetTop + 'px';
+        corazon.style.animation = 'aparecer 1s ease-out, caer 2s linear forwards';
+        document.body.appendChild(corazon);
+        setTimeout(() => corazon.remove(), 2000);
       });
     });
   </script>

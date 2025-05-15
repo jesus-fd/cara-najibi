@@ -3,146 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta Especial</title>
-  <style>
-    /* ESTILOS CSS (COPIAR TODO) */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Arial', sans-serif;
-      height: 100vh;
-      background-color: #fff9f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .carta {
-      padding: 2.5rem;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 85%;
-      z-index: 10;
-      animation: aparecer 1s ease-out;
-    }
-    @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .girasol {
-      width: 120px;
-      height: 120px;
-      position: fixed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .centro-girasol {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: radial-gradient(circle, #5D2906 40%, #8B4513 90%);
-      border-radius: 50%;
-      z-index: 10;
-      box-shadow: 0 0 10px rgba(139, 69, 19, 0.8);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .petalo {
-      position: absolute;
-      width: 28px;
-      height: 65px;
-      background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%);
-      border-radius: 50% 50% 0 0;
-      transform-origin: bottom center;
-      top: calc(50% - 32px);
-      left: calc(50% - 14px);
-    }
-    .petalo:nth-child(1) { transform: rotate(0deg) translateY(-30px); }
-    .petalo:nth-child(2) { transform: rotate(30deg) translateY(-30px); }
-    .petalo:nth-child(3) { transform: rotate(60deg) translateY(-30px); }
-    .petalo:nth-child(4) { transform: rotate(90deg) translateY(-30px); }
-    .petalo:nth-child(5) { transform: rotate(120deg) translateY(-30px); }
-    .petalo:nth-child(6) { transform: rotate(150deg) translateY(-30px); }
-    .petalo:nth-child(7) { transform: rotate(180deg) translateY(-30px); }
-    .petalo:nth-child(8) { transform: rotate(210deg) translateY(-30px); }
-    .petalo:nth-child(9) { transform: rotate(240deg) translateY(-30px); }
-    .petalo:nth-child(10) { transform: rotate(270deg) translateY(-30px); }
-    .petalo:nth-child(11) { transform: rotate(300deg) translateY(-30px); }
-    .petalo:nth-child(12) { transform: rotate(330deg) translateY(-30px); }
-    .g1 { top: 15%; left: 10%; }
-    .g2 { top: 15%; right: 10%; }
-    .g3 { bottom: 15%; left: 10%; }
-    .g4 { bottom: 15%; right: 10%; }
-    .osito {
-      position: fixed;
-      font-size: 3rem;
-      z-index: 5;
-      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
-      animation: flotar 3s ease-in-out infinite alternate;
-    }
-    .o1 { top: 10%; left: 20%; }
-    .o2 { top: 10%; right: 20%; }
-    .o3 { bottom: 10%; left: 20%; }
-    .o4 { bottom: 10%; right: 20%; }
-    @keyframes flotar {
-      from { transform: translateY(0); }
-      to { transform: translateY(-20px); }
-    }
-  </style>
+  <title>Girasoles y Ositos Mágicos</title>
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  <div class="decoracion">
-    <!-- GIRASOL 1 -->
-    <div class="girasol g1">
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="centro-girasol"></div>
-    </div>
-    <!-- GIRASOL 2 -->
-    <div class="girasol g2">
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="centro-girasol"></div>
-    </div>
-    <!-- GIRASOL 3 -->
-    <div class="girasol g3">
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="centro-girasol"></div>
-    </div>
-    <!-- GIRASOL 4 -->
-    <div class="girasol g4">
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="petalo"></div><div class="petalo"></div><div class="petalo"></div>
-      <div class="centro-girasol"></div>
-    </div>
-    
-    <!-- OSITOS -->
-    <div class="osito o1">🧸</div>
-    <div class="osito o2">🧸</div>
-    <div class="osito o3">🧸</div>
-    <div class="osito o4">🧸</div>
-  </div>
+  <!-- 8 GIRASOLES alrededor de la pantalla -->
+  <div class="girasol g1"></div>
+  <div class="girasol g2"></div>
+  <div class="girasol g3"></div>
+  <div class="girasol g4"></div>
+  <div class="girasol g5"></div>
+  <div class="girasol g6"></div>
+  <div class="girasol g7"></div>
+  <div class="girasol g8"></div>
 
+  <!-- 4 OSITOS DE PELUCHE -->
+  <div class="osito o1">🧸</div>
+  <div class="osito o2">🧸</div>
+  <div class="osito o3">🧸</div>
+  <div class="osito o4">🧸</div>
+
+  <!-- CARTA CENTRAL (opcional) -->
   <div class="carta">
     <h1>¡Hola!</h1>
-    <p>Esta es una carta animada hecha con cariño 😊</p>
+    <p>Diseño con girasoles y ositos ✨</p>
   </div>
+
+  <!-- Script para generar pétalos dinámicamente -->
+  <script>
+    // Generar pétalos para los girasoles
+    document.querySelectorAll('.girasol').forEach(girasol => {
+      for (let i = 0; i < 14; i++) {
+        const petalo = document.createElement('div');
+        petalo.className = 'petalo';
+        petalo.style.setProperty('--n', i);
+        girasol.appendChild(petalo);
+      }
+      girasol.innerHTML += `
+        <div class="centro-girasol">
+          <div class="semillas"></div>
+        </div>
+      `;
+    });
+
+    // Generar semillas del centro
+    const semillasHTML = Array(36).fill('<div class="semilla"></div>').join('');
+    document.querySelectorAll('.semillas').forEach(semillas => {
+      semillas.innerHTML = semillasHTML;
+    });
+  </script>
 </body>
 </html>

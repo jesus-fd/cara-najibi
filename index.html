@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ositos, Corazones y Globitos</title>
+  <title>Ositos, Corazones y Globitos Mágicos</title>
   <style>
     /* ESTILOS GENERALES */
     * {
@@ -13,7 +13,7 @@
     }
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #fff0f5;
+      background-color: #fff0f5; /* Fondo rosado claro */
       height: 100vh;
       overflow: hidden;
       position: relative;
@@ -26,44 +26,48 @@
       z-index: 20;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
       animation: flotar 3s ease-in-out infinite alternate;
+      cursor: pointer; /* Para que parezca interactivo */
     }
     .o1 { top: 15%; left: 20%; animation-delay: 0s; }
     .o2 { top: 15%; right: 20%; animation-delay: 0.5s; }
     .o3 { bottom: 15%; left: 20%; animation-delay: 1s; }
     .o4 { bottom: 15%; right: 20%; animation-delay: 1.5s; }
 
-    /* CORAZONES */
+    /* CORAZONES FLOTANTES */
     .corazon {
       position: fixed;
       font-size: 1.8rem;
-      color: #ff6b8b;
+      color: #ff6b8b; /* Color rosa fuerte */
       z-index: 5;
       animation: caer 6s linear infinite;
       opacity: 0.7;
+      user-select: none; /* Evita que se seleccione el texto */
     }
 
     /* GLOBITOS DE DIÁLOGO */
     .globito {
       position: fixed;
       background: white;
-      padding: 15px;
+      padding: 15px 20px;
       border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       z-index: 30;
       max-width: 200px;
       text-align: center;
       font-size: 1rem;
       animation: aparecer 2s ease-out;
+      font-weight: bold;
+      color: #555;
     }
     .globito::after {
       content: '';
       position: absolute;
       width: 0;
       height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 15px solid white;
-      bottom: -15px;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 18px solid white;
+      bottom: -18px;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -88,10 +92,22 @@
       to { opacity: 1; transform: scale(1); }
     }
 
+    /* EFECTO AL HACER CLICK EN OSITOS */
+    .osito:active {
+      transform: scale(1.1);
+      transition: transform 0.2s;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .osito { font-size: 3rem; }
-      .globito { max-width: 150px; font-size: 0.9rem; }
+      .globito { 
+        max-width: 150px; 
+        font-size: 0.9rem;
+        padding: 10px 15px;
+      }
+      .g1, .g2 { top: 20%; }
+      .g3, .g4 { bottom: 20%; }
     }
   </style>
 </head>
@@ -102,24 +118,43 @@
   <div class="osito o3">🧸</div>
   <div class="osito o4">🧸</div>
 
-  <!-- 20 CORAZONES FLOTANTES (generados con JS) -->
+  <!-- 20 CORAZONES (generados con JS) -->
   <script>
-    // Crear corazones
-    for (let i = 0; i < 20; i++) {
-      const corazon = document.createElement('div');
-      corazon.className = 'corazon';
-      corazon.innerHTML = '❤️';
-      corazon.style.left = Math.random() * 100 + 'vw';
-      corazon.style.animationDuration = (Math.random() * 4 + 3) + 's';
-      corazon.style.animationDelay = Math.random() * 5 + 's';
-      document.body.appendChild(corazon);
+    // Crear corazones aleatorios
+    function crearCorazones() {
+      const colores = ["#ff6b8b", "#ff8fab", "#ffb3c6"]; // Variantes de rosa
+      for (let i = 0; i < 20; i++) {
+        const corazon = document.createElement('div');
+        corazon.className = 'corazon';
+        corazon.innerHTML = '❤️';
+        corazon.style.left = Math.random() * 100 + 'vw';
+        corazon.style.animationDuration = (Math.random() * 4 + 3) + 's';
+        corazon.style.animationDelay = Math.random() * 5 + 's';
+        corazon.style.color = colores[Math.floor(Math.random() * colores.length)];
+        corazon.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
+        document.body.appendChild(corazon);
+      }
     }
+    crearCorazones();
   </script>
 
-  <!-- 4 GLOBITOS DE DIÁLOGO -->
-  <div class="globito g1">¡Hola! Soy un osito 🧸</div>
-  <div class="globito g2">Te quiero mucho ❤️</div>
-  <div class="globito g3">¿Jugamos juntos? 🎈</div>
-  <div class="globito g4">¡Eres especial! ✨</div>
+  <!-- 4 GLOBITOS CON MENSAJES -->
+  <div class="globito g1">¡Hola! Soy tu osito favorito 🧸</div>
+  <div class="globito g2">¿Sabías que eres increíble? 💖</div>
+  <div class="globito g3">¡Vamos a jugar juntos! 🎠</div>
+  <div class="globito g4">Te mando un abrazo gigante 🤗</div>
+
+  <!-- INTERACTIVIDAD: Haz que los ositos "salten" al hacer clic -->
+  <script>
+    document.querySelectorAll('.osito').forEach(osito => {
+      osito.addEventListener('click', () => {
+        osito.style.animation = 'none';
+        osito.style.transform = 'translateY(-30px) rotate(10deg)';
+        setTimeout(() => {
+          osito.style.animation = 'flotar 3s ease-in-out infinite alternate';
+        }, 500);
+      });
+    });
+  </script>
 </body>
 </html>
